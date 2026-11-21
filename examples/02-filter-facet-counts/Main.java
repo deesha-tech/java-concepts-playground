@@ -14,9 +14,10 @@ import java.util.stream.Stream;
  * A shopper ticks "Black" in a shop's colour filter, and every other colour disappears.
  * This file has the buggy first version and the fix, side by side.
  *
- * Run it (Java 17 or later, nothing to install):
- *
- *     java Main.java
+ * Run it:
+ *   - in GitHub Codespaces: it runs once when the codespace opens; run it again with "Run" above main(),
+ *     or type  java Main.java  in the terminal
+ *   - on your machine (Java 17 or later):  java Main.java
  *
  * Concepts: Predicate (and chaining with and()), Stream, Collectors.groupingBy, Collectors.counting,
  * Comparator (comparingByValue, reverseOrder, thenComparing), records.

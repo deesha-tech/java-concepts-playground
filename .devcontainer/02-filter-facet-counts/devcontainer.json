@@ -1,0 +1,13 @@
+{
+  "name": "Ep 02 · Pick Black, and Blue disappears",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack"]
+    },
+    "codespaces": {
+      "openFiles": ["examples/02-filter-facet-counts/Main.java"]
+    }
+  },
+  "postAttachCommand": "cd examples/02-filter-facet-counts && java Main.java"
+}

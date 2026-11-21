@@ -1,0 +1,13 @@
+{
+  "name": "Java Concepts Playground",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack"]
+    },
+    "codespaces": {
+      "openFiles": ["README.md"]
+    }
+  },
+  "postAttachCommand": "echo 'Open an episode folder under examples/ and run: java Main.java'"
+}
