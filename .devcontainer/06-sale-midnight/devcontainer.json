@@ -1,0 +1,13 @@
+{
+  "name": "Ep 06 · The sale ended at the wrong midnight",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack"]
+    },
+    "codespaces": {
+      "openFiles": ["examples/06-sale-midnight/Main.java"]
+    }
+  },
+  "postAttachCommand": "cd examples/06-sale-midnight && java Main.java"
+}

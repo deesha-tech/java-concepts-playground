@@ -1,0 +1,13 @@
+{
+  "name": "Ep 01 · The bill is off by one paisa",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack"]
+    },
+    "codespaces": {
+      "openFiles": ["examples/01-money-not-a-double/Main.java"]
+    }
+  },
+  "postAttachCommand": "cd examples/01-money-not-a-double && java Main.java"
+}

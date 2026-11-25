@@ -12,13 +12,16 @@ Each file has the buggy first version and the fix side by side, with the concept
   browser with Java 17 ready, opens the episode's `Main.java` and runs it once. Run it again any time with the
   **Run** link above `main`, or `java Main.java` in the terminal. You need a GitHub account; Codespaces uses your free
   monthly allowance.
-- **On your machine (Java 17 or later):** `java Main.java` inside the episode's folder.
+- **On your machine (Java 17 or later; Java 21 for the virtual-threads example):** `java Main.java` inside the episode's folder.
 
 ## Episodes
 
 | Ep | The scenario | Concepts | Code | Run online |
 |---|---|---|---|---|
+| 01 | The cart says ₹579.05, the payment gateway charges ₹579.04 | `double` vs a `Money` record, `BigDecimal`, `Currency`, `setScale`, `RoundingMode`, minor units | [Main.java](examples/01-money-not-a-double/Main.java) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2F01-money-not-a-double%2Fdevcontainer.json) |
 | 02 | A shopper ticks Black, and every other colour disappears | Predicate, `and()`, Stream, `groupingBy`, `counting`, Comparator, records | [Main.java](examples/02-filter-facet-counts/Main.java) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2F02-filter-facet-counts%2Fdevcontainer.json) |
+| 06 | The sale should end at midnight; it runs until 5:30 am | `LocalDateTime` vs `Instant`, `ZoneId`, `atStartOfDay(zone)`, an injected `Clock` | [Main.java](examples/06-sale-midnight/Main.java) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2F06-sale-midnight%2Fdevcontainer.json) |
+| 26 | 10,000 shoppers, 200 threads (Java 21) | platform threads vs virtual threads, `newVirtualThreadPerTaskExecutor`, waiting vs CPU work | [Main.java](examples/virtual-threads-race/Main.java) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2Fvirtual-threads-race%2Fdevcontainer.json) |
 
 ## Learn it live
 

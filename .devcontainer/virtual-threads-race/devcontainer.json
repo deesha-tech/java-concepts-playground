@@ -1,0 +1,13 @@
+{
+  "name": "10,000 shoppers, 200 threads",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack"]
+    },
+    "codespaces": {
+      "openFiles": ["examples/virtual-threads-race/Main.java"]
+    }
+  },
+  "postAttachCommand": "cd examples/virtual-threads-race && java Main.java"
+}
