@@ -1,0 +1,87 @@
+{
+  "series": "Production Java: Concepts, Questions & Patterns",
+  "categories": [
+    "Core Java & values",
+    "Collections & streams",
+    "Dates & time",
+    "Concurrency"
+  ],
+  "episodes": [
+    {
+      "n": 1,
+      "slug": "01-money-not-a-double",
+      "title": "The bill is off by one paisa",
+      "category": "Core Java & values",
+      "live": true,
+      "pattern": "Money as a value object",
+      "type": "Java Interview",
+      "summary": "The cart says ₹579.05, the payment gateway charges ₹579.04. 0.05 has no exact binary form, so a total held in a double is really 579.0499…, and converting it to paise cuts it down. Make money its own type: a record over BigDecimal and Currency that refuses invalid states and hands the gateway exact minor units.",
+      "concepts": ["double vs BigDecimal", "Records", "Currency", "setScale and RoundingMode", "Value objects", "Minor units"],
+      "codespaces": "https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2F01-money-not-a-double%2Fdevcontainer.json",
+      "github": "https://github.com/deesha-tech/java-concepts-playground/tree/main/examples/01-money-not-a-double",
+      "challenges": [
+        { "level": "Warm-up", "text": "Add a third item to the cart at ₹0.10 and run both versions. How far apart are the two totals now, and why does the double version drift?" },
+        { "level": "Core", "text": "Add a percentage discount to Money, e.g. discount(new BigDecimal(\"12.5\")), rounding half-up to paise. Add a check in main that 12.5% off ₹579.05 is ₹506.67." },
+        { "level": "Stretch", "text": "Split a bill of ₹100.00 three ways so the parts add up exactly to the total (₹33.34, ₹33.33, ₹33.33). Write allocate(int parts) on Money and show the sum always matches." }
+      ],
+      "interviewQuestion": "Why should you never store money in a double, and what would you use instead?"
+    },
+    {
+      "n": 2,
+      "slug": "02-filter-facet-counts",
+      "title": "Pick Black, and Blue disappears",
+      "category": "Collections & streams",
+      "live": true,
+      "pattern": "Count each facet without its own filter",
+      "type": "Java Interview",
+      "summary": "A shopper ticks Black in the colour filter and every other colour vanishes, because the counts are taken after every filter, including colour's own. Treat each filter as a Predicate, chain them with and(), skip the facet being counted, and count in one pass with groupingBy and counting.",
+      "concepts": ["Predicate and and()", "Stream", "Collectors.groupingBy", "Collectors.counting", "Comparator chaining", "Records"],
+      "codespaces": "https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2F02-filter-facet-counts%2Fdevcontainer.json",
+      "github": "https://github.com/deesha-tech/java-concepts-playground/tree/main/examples/02-filter-facet-counts",
+      "challenges": [
+        { "level": "Warm-up", "text": "Tick a second colour as well as Black. Do the brand counts change the way a shopper would expect? Explain what you see." },
+        { "level": "Core", "text": "Give Product a price and add a price-band facet (under ₹500, ₹500 to ₹999, ₹1,000 and above). Count it with the same rule: every filter except its own." },
+        { "level": "Stretch", "text": "Compute the counts for every facet in a single pass over the products instead of one stream per facet. Compare the result with the original for a few selections." }
+      ],
+      "interviewQuestion": "How would you compute facet counts for a product listing so that selecting one value does not hide the others?"
+    },
+    {
+      "n": 6,
+      "slug": "06-sale-midnight",
+      "title": "The sale ended at the wrong midnight",
+      "category": "Dates & time",
+      "live": true,
+      "pattern": "Instants, zones and an injected Clock",
+      "type": "Java Interview",
+      "summary": "The Diwali sale in the India store should end at midnight, but the server runs in UTC, so a LocalDateTime midnight lands at 5:30 am in India. Compute the sale window once as Instants from the store's ZoneId, and read time from an injected Clock so it can be tested with Clock.fixed.",
+      "concepts": ["LocalDateTime vs Instant", "ZoneId and ZonedDateTime", "atStartOfDay(zone)", "Injected Clock", "Clock.fixed in tests"],
+      "codespaces": "https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2F06-sale-midnight%2Fdevcontainer.json",
+      "github": "https://github.com/deesha-tech/java-concepts-playground/tree/main/examples/06-sale-midnight",
+      "challenges": [
+        { "level": "Warm-up", "text": "Change the store's zone to America/New_York and run it again. At which of the five moments do the two versions now disagree?" },
+        { "level": "Core", "text": "The sale runs in two stores at once, India and the UK, each ending at its own local midnight. Return both end Instants and check each with a fixed Clock." },
+        { "level": "Stretch", "text": "Pick a UK store and a date when the clocks change. Show that adding 24 hours and taking the next day's start of day give different answers, and say which one the sale should use." }
+      ],
+      "interviewQuestion": "What is the difference between LocalDateTime and Instant, and why inject a Clock instead of calling now()?"
+    },
+    {
+      "n": 26,
+      "slug": "virtual-threads-race",
+      "title": "10,000 shoppers, 200 threads",
+      "category": "Concurrency",
+      "live": true,
+      "pattern": "Virtual threads for waiting work",
+      "type": "Java Interview",
+      "summary": "10,000 shoppers open a product page at once, and each page waits about 100 ms on the price and stock services. A pool of 200 platform threads serves them in batches; one virtual thread per request serves them together. Then the CPU-heavy version shows where virtual threads do not help. Needs Java 21.",
+      "concepts": ["Platform threads", "newFixedThreadPool", "Virtual threads", "newVirtualThreadPerTaskExecutor", "Blocking I/O", "CPU-bound vs waiting work"],
+      "codespaces": "https://codespaces.new/deesha-tech/java-concepts-playground?quickstart=1&devcontainer_path=.devcontainer%2Fvirtual-threads-race%2Fdevcontainer.json",
+      "github": "https://github.com/deesha-tech/java-concepts-playground/tree/main/examples/virtual-threads-race",
+      "challenges": [
+        { "level": "Warm-up", "text": "Change the pool from 200 to 2,000 platform threads and run it again. How close does it get to the virtual threads, and what does each extra platform thread cost?" },
+        { "level": "Core", "text": "Split each page's 100 ms wait into two calls, price then stock, of 50 ms each. Then run the two calls at the same time inside each request and measure the difference." },
+        { "level": "Stretch", "text": "Limit the virtual-thread version to 500 calls in flight to the stock service with a Semaphore, as a real downstream would require, and compare the timings." }
+      ],
+      "interviewQuestion": "When do virtual threads make a Java service faster, and when do they not?"
+    }
+  ]
+}
